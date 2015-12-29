@@ -1,5 +1,5 @@
 CC=gcc
-FLAGS=-DUNROLL -DDP
+FLAGS=-DUNROLL -DDP -Ofast
 
 linpack: linpack.c
 	${CC} $< -o $@ ${FLAGS}
