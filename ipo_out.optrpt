@@ -1,0 +1,774 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: disabled
+  -inline-max-per-compile: disabled
+
+
+Begin optimization report for: what_date()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (what_date()) [1] linpack.c(256,6)
+
+===========================================================================
+
+Begin optimization report for: print_time(int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (print_time(int)) [2] linpack.c(667,1)
+  -> EXTERN: (668,1) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+
+===========================================================================
+
+Begin optimization report for: daxpy(int, float, float *, int, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (daxpy(int, float, float *, int, float *, int)) [3] linpack.c(952,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(984,9)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at linpack.c(984,9)
+<Multiversioned v1>
+   remark #25228: Loop multiversioned for Data Dependence
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15450: unmasked unaligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 13 
+   remark #15477: vector loop cost: 1.000 
+   remark #15478: estimated potential speedup: 8.510 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(984,9)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(984,9)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at linpack.c(984,9)
+<Multiversioned v2>
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at linpack.c(984,9)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: ddot(int, float *, int, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ddot(int, float *, int, float *, int)) [4] linpack.c(1020,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(1054,9)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at linpack.c(1054,9)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15450: unmasked unaligned unit stride loads: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 10 
+   remark #15477: vector loop cost: 1.000 
+   remark #15478: estimated potential speedup: 6.630 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(1054,9)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: dgesl(float *, int, int, int *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (dgesl(float *, int, int, int *, float *, int)) [5] linpack.c(883,1)
+  -> (903,33) daxpy(int, float, float *, int, float *, int)
+  -> (913,21) daxpy(int, float, float *, int, float *, int)
+  -> (922,29) ddot(int, float *, int, float *, int)
+  -> (931,47) ddot(int, float *, int, float *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(896,25)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #15346: vector dependence: assumed ANTI dependence between b line 898 and b line 901
+LOOP END
+
+LOOP BEGIN at linpack.c(909,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+LOOP END
+===========================================================================
+
+Begin optimization report for: dscal(int, float, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (dscal(int, float, float *, int)) [6] linpack.c(1088,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(1111,9)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at linpack.c(1111,9)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 9 
+   remark #15477: vector loop cost: 0.620 
+   remark #15478: estimated potential speedup: 9.030 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(1111,9)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(1111,9)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: idamax(int, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (idamax(int, float *, int)) [7] linpack.c(1147,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(1174,17)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at linpack.c(1174,17)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15450: unmasked unaligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 21 
+   remark #15477: vector loop cost: 2.620 
+   remark #15478: estimated potential speedup: 5.870 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(1174,17)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(1174,17)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: dgefa(float *, int, int, int *, int *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (dgefa(float *, int, int, int *, int *)) [8] linpack.c(760,1)
+  -> (777,29) idamax(int, float *, int)
+  -> (796,33) dscal(int, float, float *, int)
+  -> (806,41) daxpy(int, float, float *, int, float *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(772,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #25018: Total number of lines prefetched=1
+   remark #25035: Number of pointer data prefetches=1, dist=64
+
+   LOOP BEGIN at linpack.c(800,33)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+      remark #15346: vector dependence: assumed ANTI dependence between a line 801 and a line 804
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: matgen(float *, int, int, float *, float *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matgen(float *, int, int, float *, float *)) [9] linpack.c(682,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(687,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #15346: vector dependence: assumed FLOW dependence between a line 690 and a line 691
+
+   LOOP BEGIN at linpack.c(688,17)
+      remark #25084: Preprocess Loopnests: Moving Out Store    [ linpack.c(691,26) ]
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+      remark #15346: vector dependence: assumed ANTI dependence between init line 689 and init line 689
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at linpack.c(698,9)
+   remark #25408: memset generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+   remark #25015: Estimate of max trip count of loop=1
+
+   LOOP BEGIN at linpack.c(698,9)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 5 
+      remark #15477: vector loop cost: 0.370 
+      remark #15478: estimated potential speedup: 13.330 
+      remark #15488: --- end vector loop cost summary ---
+      remark #25015: Estimate of max trip count of loop=3
+   LOOP END
+
+   LOOP BEGIN at linpack.c(698,9)
+   <Remainder loop for vectorization>
+      remark #25015: Estimate of max trip count of loop=24
+   LOOP END
+LOOP END
+
+LOOP BEGIN at linpack.c(701,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at linpack.c(702,17)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15450: unmasked unaligned unit stride loads: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 13 
+      remark #15477: vector loop cost: 0.750 
+      remark #15478: estimated potential speedup: 10.400 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at linpack.c(702,17)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at linpack.c(702,17)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+linpack.c(699,11):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+linpack.c(699,11):remark #34026: call to memset implemented as a call to optimized library version
+===========================================================================
+
+Begin optimization report for: second()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (second()) [10] linpack.c(245,6)
+  -> EXTERN: (248,16) clock(void)
+
+===========================================================================
+
+Begin optimization report for: epslon(float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (epslon(float)) [11] linpack.c(1191,1)
+
+===========================================================================
+
+Begin optimization report for: dmxpy(int, float *, int, int, float *, float *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (dmxpy(int, float *, int, int, float *, float *)) [12] linpack.c(1261,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(1268,17)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15450: unmasked unaligned unit stride loads: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 15 
+   remark #15477: vector loop cost: 1.000 
+   remark #15478: estimated potential speedup: 9.530 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(1268,17)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(1268,17)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at linpack.c(1277,17)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15450: unmasked unaligned unit stride loads: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 24 
+   remark #15477: vector loop cost: 1.620 
+   remark #15478: estimated potential speedup: 9.420 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(1277,17)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(1277,17)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at linpack.c(1287,17)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15450: unmasked unaligned unit stride loads: 4 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 43 
+   remark #15477: vector loop cost: 2.870 
+   remark #15478: estimated potential speedup: 9.480 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(1287,17)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(1287,17)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at linpack.c(1299,17)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15450: unmasked unaligned unit stride loads: 8 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 80 
+   remark #15477: vector loop cost: 5.370 
+   remark #15478: estimated potential speedup: 12.350 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at linpack.c(1299,17)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at linpack.c(1310,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at linpack.c(1311,17)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15450: unmasked unaligned unit stride loads: 16 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 201 
+      remark #15477: vector loop cost: 10.370 
+      remark #15478: estimated potential speedup: 15.300 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at linpack.c(1311,17)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: main()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main()) [13] linpack.c(274,1)
+  -> EXTERN: (274,1) mallopt
+  -> EXTERN: (274,1) mallopt
+  -> EXTERN: (274,1) mallopt
+  -> EXTERN: (283,50) ?1memcpy
+  -> EXTERN: (285,19) fopen(const char *__restrict__, const char *__restrict__)
+  -> EXTERN: (288,13) printf(const char *__restrict__, ...)
+  -> EXTERN: (289,13) printf(const char *__restrict__, ...)
+  -> EXTERN: (291,13) exit(int)
+  -> EXTERN: (307,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (307,33) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (308,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (309,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (310,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (314,9) matgen(float *, int, int, float *, float *)
+  -> (315,14) second()
+  -> (316,9) dgefa(float *, int, int, int *, int *)
+  -> (317,23) second()
+  -> (318,14) second()
+  -> (319,9) dgesl(float *, int, int, int *, float *, int)
+  -> (320,23) second()
+  -> (328,9) matgen(float *, int, int, float *, float *)
+  -> (332,9) dmxpy(int, float *, int, int, float *, float *)
+  -> (341,15) epslon(float)
+  -> EXTERN: (347,9) printf(const char *__restrict__, ...)
+  -> EXTERN: (348,9) printf(const char *__restrict__, ...)
+  -> EXTERN: (349,9) printf(const char *__restrict__, ...)
+  -> EXTERN: (353,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (354,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (355,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (356,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (371,9) print_time(int)
+  -> EXTERN: (377,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (382,21) second()
+  -> (386,18) matgen(float *, int, int, float *, float *)
+  -> (388,21) second()
+  -> EXTERN: (390,13) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (411,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (417,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (422,21) second()
+  -> (426,17) matgen(float *, int, int, float *, float *)
+  -> (427,17) dgefa(float *, int, int, int *, int *)
+  -> (429,21) second()
+  -> EXTERN: (430,13) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (452,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (453,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (454,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (455,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (467,18) second()
+  -> (471,17) matgen(float *, int, int, float *, float *)
+  -> (472,17) dgefa(float *, int, int, int *, int *)
+  -> (475,28) second()
+  -> (477,18) second()
+  -> (481,17) dgesl(float *, int, int, int *, float *, int)
+  -> (484,28) second()
+  -> (492,13) print_time(int)
+  -> EXTERN: (495,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (498,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (504,17) second()
+  -> (507,13) matgen(float *, int, int, float *, float *)
+  -> (509,17) second()
+  -> EXTERN: (513,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (514,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (515,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (516,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (528,18) second()
+  -> (532,17) matgen(float *, int, int, float *, float *)
+  -> (533,17) dgefa(float *, int, int, int *, int *)
+  -> (536,28) second()
+  -> (538,18) second()
+  -> (542,17) dgesl(float *, int, int, int *, float *, int)
+  -> (545,28) second()
+  -> (553,13) print_time(int)
+  -> EXTERN: (556,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (566,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (567,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (567,33) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (568,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> (570,9) what_date()
+  -> EXTERN: (576,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (578,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (579,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (580,5) fflush(FILE *)
+  -> EXTERN: (581,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (582,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (583,5) fflush(FILE *)
+  -> EXTERN: (584,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (585,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (586,5) fflush(FILE *)
+  -> EXTERN: (587,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (588,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (589,5) fflush(FILE *)
+  -> EXTERN: (590,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (591,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (592,5) fflush(FILE *)
+  -> EXTERN: (593,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (594,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (595,5) fflush(FILE *)
+  -> EXTERN: (596,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (597,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (598,5) fflush(FILE *)
+  -> EXTERN: (599,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (600,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (601,5) fflush(FILE *)
+  -> EXTERN: (602,5) printf(const char *__restrict__, ...)
+  -> EXTERN: (603,5) scanf(const char *__restrict__, ...)
+  -> EXTERN: (604,5) fflush(FILE *)
+  -> EXTERN: (610,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (612,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (613,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (614,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (615,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (616,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (617,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (618,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (619,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (620,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (621,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (622,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (623,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (624,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (626,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (627,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (628,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (629,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (630,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (631,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (632,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (633,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (634,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (635,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (636,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (637,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (639,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (644,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (647,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (649,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (653,9) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (656,5) fprintf(FILE *__restrict__, const char *__restrict__, ...)
+  -> EXTERN: (658,5) fclose(FILE *)
+  -> EXTERN: (660,5) printf(const char *__restrict__, ...)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at linpack.c(325,9)
+<Distributed chunk1>
+   remark #25426: Loop Distributed (2 way) 
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+   remark #25015: Estimate of max trip count of loop=1
+
+   LOOP BEGIN at linpack.c(325,9)
+   <Multiversioned v2, Distributed chunk1>
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15301: PARTIAL LOOP WAS VECTORIZED
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 4 
+      remark #15477: vector loop cost: 0.370 
+      remark #15478: estimated potential speedup: 7.690 
+      remark #15488: --- end vector loop cost summary ---
+      remark #25015: Estimate of max trip count of loop=12
+   LOOP END
+
+   LOOP BEGIN at linpack.c(325,9)
+   <Remainder loop for vectorization, Multiversioned v2, Distributed chunk1>
+      remark #25436: completely unrolled by 4  
+   LOOP END
+LOOP END
+
+LOOP BEGIN at linpack.c(329,9)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ linpack.c(329,28) ]
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 5 
+   remark #15477: vector loop cost: 0.500 
+   remark #15478: estimated potential speedup: 7.350 
+   remark #15488: --- end vector loop cost summary ---
+   remark #25015: Estimate of max trip count of loop=3
+LOOP END
+
+LOOP BEGIN at linpack.c(329,9)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(335,9)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ linpack.c(335,28) ]
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15448: unmasked aligned unit stride loads: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 23 
+   remark #15477: vector loop cost: 1.500 
+   remark #15478: estimated potential speedup: 8.040 
+   remark #15488: --- end vector loop cost summary ---
+   remark #25015: Estimate of max trip count of loop=3
+LOOP END
+
+LOOP BEGIN at linpack.c(335,9)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at linpack.c(379,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable pass was found, but loop iteration count cannot be computed before executing the loop
+
+   LOOP BEGIN at linpack.c(384,13)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+LOOP END
+
+LOOP BEGIN at linpack.c(419,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable pass was found, but loop iteration count cannot be computed before executing the loop
+
+   LOOP BEGIN at linpack.c(424,13)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+LOOP END
+
+LOOP BEGIN at linpack.c(464,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #25015: Estimate of max trip count of loop=5
+
+   LOOP BEGIN at linpack.c(469,13)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+
+   LOOP BEGIN at linpack.c(479,13)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+LOOP END
+
+LOOP BEGIN at linpack.c(505,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+LOOP END
+
+LOOP BEGIN at linpack.c(525,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #25015: Estimate of max trip count of loop=5
+
+   LOOP BEGIN at linpack.c(530,13)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+
+   LOOP BEGIN at linpack.c(540,13)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+LOOP END
+
+LOOP BEGIN at linpack.c(642,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ linpack.c(644,9) ]
+   remark #25436: completely unrolled by 5  
+LOOP END
+
+LOOP BEGIN at linpack.c(651,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ linpack.c(653,9) ]
+   remark #25436: completely unrolled by 5  
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+linpack.c(283,50):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (32, 0)
+linpack.c(326,17):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (32, 0), and destination (alignment, offset): (32, 0)
+===========================================================================
+
+    Report from: Profile guided optimizations [pgo]
+
+
+
+Profile feedback used a statically estimated profile for the following routines:
+
+  File: linpack.c
+        second()(245)
+        what_date()(256)
+        main()(274)
+        print_time(int)(667)
+        matgen(float *, int, int, float *, float *)(682)
+        dgefa(float *, int, int, int *, int *)(760)
+        dgesl(float *, int, int, int *, float *, int)(883)
+        daxpy(int, float, float *, int, float *, int)(952)
+        ddot(int, float *, int, float *, int)(1020)
+        dscal(int, float, float *, int)(1088)
+        idamax(int, float *, int)(1147)
+        epslon(float)(1191)
+        dmxpy(int, float *, int, int, float *, float *)(1261)
+
+
+  0 out of 13 routine(s) used training profile data for PGO feedback
+  0 out of 13 routine(s) were unable to use training profile data for PGO feedback
+  0 out of 13 routine(s) were unable to find training profile data for PGO feedback
+  13 out of 13 routine(s) used a static estimate profile for PGO feedback
+
+
+

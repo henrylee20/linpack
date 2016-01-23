@@ -193,6 +193,7 @@
  ***************************************************************************
 */
 
+
 #ifdef SP
 #define REAL float
 #define ZERO 0.0
@@ -219,9 +220,7 @@
 
 #include <stdio.h>
 #include <math.h>
-/* Commneted out for SUN --- CTKing (10/13/2000)
-#include <conio.h>
-*/
+//#include <conio.h>
 #include <stdlib.h>
 
 
@@ -252,28 +251,26 @@ REAL ddot (int n, REAL dx[], int incx, REAL dy[], int incy);
      }
 
 /* DATE DATE DATE DATE DATE DATE DATE DATE DATE DATE DATE DATE DATE */
-/* Commented out for general computers --- CTKing (10/13/2000)
-   #include <dos.h>   ** for following date functions only **
+//   #include <dos.h>   /* for following date functions only */
    void what_date()
      {
-         **   Watcom   **         
-         struct dosdate_t adate;
-         _dos_getdate( &adate );
-         this_month = adate.month;
-         this_year = adate.year;
+         /*   Watcom   */         
+//         struct dosdate_t adate;
+//         _dos_getdate( &adate );
+//         this_month = adate.month;
+//         this_year = adate.year;
          
-         **   Borland
+         /*   Borland
          struct date adate;
          getdate( &adate );
          this_month = adate.da_mon;
          this_year = adate.da_year;
-         **         
+         */         
          return;
      }
-*/
 
 
-int main ()
+main ()
 {
         static REAL aa[200*200],a[200*201],b[200],x[200];       
         REAL cray,ops,total,norma,normx;
@@ -289,10 +286,8 @@ int main ()
         if (outfile == NULL)
         {
             printf ("Cannot open results file \n\n");
-            /* Commented out for SUN --- CTKing (10/13/2000)
             printf("Press any key\n");
-            Endit = getch();
-            */
+ //           Endit = getch();
             exit (0);
         }
 
@@ -572,15 +567,12 @@ int main ()
         fprintf(stderr,ROLLING);fprintf(stderr,PREC);
         fprintf(stderr," Precision %11.2f Mflops \n\n",mflops);
 
-        /* Commented out for general computers --- CTKing (10/13/2000)
         what_date();
-        */
 
 /************************************************************************
  *             Type details of hardware, software etc.                  *
  ************************************************************************/
 
-    /* Commented out for SUN --- CTKing (10/13/2000) ---
     printf ("Enter the following data which will be "
                                 "appended to file Linpack.txt \n\n");
     printf ("PC Supplier/model ?\n                    ");
@@ -610,13 +602,11 @@ int main ()
     printf ("Mail address      ?\n                    ");
     scanf ("%[^\n]", general[0]);
     fflush (stdin);
-    */
 
 /************************************************************************
  *              Add results to output file LLloops.txt                  *
  ************************************************************************/
             
-    /* Commented out for SUN --- CTKing (10/13/2000) ---
     fprintf (outfile, "----------------- ----------------- --------- "
                       "--------- ---------\n");
     fprintf (outfile, "LINPACK BENCHMARK FOR PCs 'C/C++'    n @ 100\n\n");
@@ -664,14 +654,11 @@ int main ()
                        atime[0][i], atime[1][i], atime[2][i], atime[3][i]);
     }
     fprintf(outfile, "Average            %46.2f\n\n",atime[3][12]); 
-    */
     
     fclose (outfile);
     
-    /* Commented out for SUN --- CTKing (10/13/2000)
     printf("\nPress any key\n");
-    Endit = getch();
-    */
+//    Endit = getch();
 }
      
 /*----------------------*/ 
